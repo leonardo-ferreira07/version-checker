@@ -19,12 +19,12 @@
         NSString *urlString = [NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@&country=BR&lang=PT", appBundleId];
         NSURL *url = [NSURL URLWithString:urlString];
         
-        NSError *error = nil;
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        
-        if(data) {
+        NSURLSession *session = [NSURLSession sharedSession];
+        [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
-            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+            NSError *dictError = nil;
+            
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&dictError];
             
             if(!error) {
                 NSArray *results = [NSArray new];
@@ -52,7 +52,7 @@
                     } else {
                         isOldVersion(NO);
                     }
-                
+                    
                 } else {
                     isOldVersion(NO);
                 }
@@ -61,9 +61,8 @@
                 NSLog(@"Error to parse response.");
             }
             
-        } else {
-            isOldVersion(NO);
-        }
+        }] resume];
+        
     }];
     
 }
