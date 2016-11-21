@@ -22,25 +22,31 @@
         NSURLSession *session = [NSURLSession sharedSession];
         [[session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             
-            NSError *dictError = nil;
-            
-            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&dictError];
-            
             if(!error) {
-                NSArray *results = [NSArray new];
-                if(dictionary[@"results"]) {
-                    results = [dictionary objectForKey:@"results"];
-                    
-                    if(results.count > 0) {
+                
+                NSError *dictError = nil;
+                
+                NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&dictError];
+                
+                if(!dictError) {
+                    NSArray *results = [NSArray new];
+                    if(dictionary[@"results"]) {
+                        results = [dictionary objectForKey:@"results"];
                         
-                        NSDictionary *resultDict = [results firstObject];
-                        NSString *currentAppStoreVersion = [NSString new];
-                        
-                        if(resultDict[@"version"]) {
-                            currentAppStoreVersion = [resultDict objectForKey:@"version"];
+                        if(results.count > 0) {
                             
-                            if(![[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]  isEqualToString:currentAppStoreVersion]) {
-                                isOldVersion(YES);
+                            NSDictionary *resultDict = [results firstObject];
+                            NSString *currentAppStoreVersion = [NSString new];
+                            
+                            if(resultDict[@"version"]) {
+                                currentAppStoreVersion = [resultDict objectForKey:@"version"];
+                                
+                                if(![[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]  isEqualToString:currentAppStoreVersion]) {
+                                    isOldVersion(YES);
+                                } else {
+                                    isOldVersion(NO);
+                                }
+                                
                             } else {
                                 isOldVersion(NO);
                             }
@@ -52,13 +58,13 @@
                     } else {
                         isOldVersion(NO);
                     }
-                    
                 } else {
                     isOldVersion(NO);
+                    NSLog(@"Error to parse response: %@", dictError.description);
                 }
             } else {
                 isOldVersion(NO);
-                NSLog(@"Error to parse response.");
+                NSLog(@"Error to execute web request: %@", error.description);
             }
             
         }] resume];
