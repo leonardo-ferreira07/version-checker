@@ -2,7 +2,7 @@
 This sample app verify the app version according to the App Store version.
 
 ## Usage
-If you want to use this in your project, just drag the ```AppVersionChecker.h``` and ```AppVersionChecker.m``` files into your project. Call the mehtod to verify you app version, sending via parameter you bundle ID registered on App Store.
+If you want to use this in your project, just drag the ```AppVersionChecker.h``` and ```AppVersionChecker.m``` files into your project. Call the mehtod to verify you app version, sending via parameter your app bundle ID registered on App Store.
 
 ### Example
 ```objc
