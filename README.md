@@ -1,6 +1,9 @@
 # version-checker
 This sample app verify the app version according to the App Store version.
 
+### Continuous integration - branch master
+[![CI Status Master](https://travis-ci.org/leonardo-ferreira07/version-checker.svg?branch=master)](https://travis-ci.org/leonardo-ferreira07/version-checker)
+
 ## Usage
 If you want to use this in your project, just drag the ```AppVersionChecker.h``` and ```AppVersionChecker.m``` files into your project. Call the mehtod to verify you app version, sending via parameter your app bundle ID registered on App Store.
 
