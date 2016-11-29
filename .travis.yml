@@ -1,0 +1,4 @@
+osx_image: xcode8
+language: objective-c
+script:
+- xcodebuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -project VersionChecker/VersionChecker.xcodeproj -scheme VersionChecker
