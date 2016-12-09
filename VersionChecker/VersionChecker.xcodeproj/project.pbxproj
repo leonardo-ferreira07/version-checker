@@ -521,6 +521,7 @@
 				A7E05F7D1DE3668000A7408D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A7E05F7E1DE3668000A7408D /* Build configuration list for PBXNativeTarget "VersionCheckerTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +530,7 @@
 				A7E05F801DE3668000A7408D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A7E05F811DE3668000A7408D /* Build configuration list for PBXNativeTarget "VersionCheckerUITests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +539,7 @@
 				A7E05F831DE3668000A7408D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

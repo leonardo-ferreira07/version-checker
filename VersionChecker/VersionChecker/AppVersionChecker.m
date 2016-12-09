@@ -40,8 +40,13 @@
                             
                             if(resultDict[@"version"]) {
                                 currentAppStoreVersion = [resultDict objectForKey:@"version"];
+                                currentAppStoreVersion = [currentAppStoreVersion stringByReplacingOccurrencesOfString:@"." withString:@""];
+                                int currentAppStoreVersionInt = currentAppStoreVersion.intValue;
+                                NSString *deviceAppVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+                                deviceAppVersion = [deviceAppVersion stringByReplacingOccurrencesOfString:@"." withString:@""];
+                                int deviceAppVersionInt = deviceAppVersion.intValue;
                                 
-                                if(![[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]  isEqualToString:currentAppStoreVersion]) {
+                                if(deviceAppVersionInt < currentAppStoreVersionInt) {
                                     isOldVersion(YES);
                                 } else {
                                     isOldVersion(NO);
